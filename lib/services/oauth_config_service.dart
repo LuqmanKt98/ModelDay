@@ -1,17 +1,19 @@
 import 'package:flutter/foundation.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// TEMPORARILY DISABLED FOR DEPLOYMENT
+// import 'package:google_sign_in/google_sign_in.dart';
 
 class OAuthConfigService {
+  // TEMPORARILY DISABLED FOR DEPLOYMENT - OAuth functionality commented out
   static const String _webClientId =
-      'YOUR_WEB_CLIENT_ID'; // Will be configured via backend
+      'DISABLED_FOR_DEPLOYMENT'; // OAuth temporarily disabled
   static const String _androidClientId =
-      'YOUR_ANDROID_CLIENT_ID'; // Will be configured via backend
+      'DISABLED_FOR_DEPLOYMENT'; // OAuth temporarily disabled
   static const String _iosClientId =
-      'YOUR_IOS_CLIENT_ID'; // Will be configured via backend
+      'DISABLED_FOR_DEPLOYMENT'; // OAuth temporarily disabled
 
-  // Manual OAuth Configuration
+  // Manual OAuth Configuration - TEMPORARILY DISABLED
   static const String manualOAuthClientId = _webClientId;
-  static const String manualOAuthClientSecret = 'YOUR_CLIENT_SECRET'; // Will be handled by backend
+  static const String manualOAuthClientSecret = 'DISABLED_FOR_DEPLOYMENT'; // OAuth temporarily disabled
 
   // OAuth Endpoints
   static const String authEndpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
@@ -30,8 +32,13 @@ class OAuthConfigService {
     'https://www.googleapis.com/auth/calendar'
   ];
 
-  /// Get the appropriate Google Sign-In configuration for the current platform
-  static GoogleSignIn getGoogleSignInInstance() {
+  /// TEMPORARILY DISABLED FOR DEPLOYMENT - Get the appropriate Google Sign-In configuration for the current platform
+  static dynamic getGoogleSignInInstance() {
+    // OAUTH FUNCTIONALITY TEMPORARILY DISABLED FOR DEPLOYMENT
+    debugPrint('⚠️ OAuth temporarily disabled for deployment');
+    return null;
+
+    /* COMMENTED OUT FOR DEPLOYMENT
     if (kIsWeb) {
       return GoogleSignIn(
         clientId: _webClientId,
@@ -57,6 +64,7 @@ class OAuthConfigService {
         // (google-services.json for Android, GoogleService-Info.plist for iOS)
       );
     }
+    */
   }
 
   /// Get client ID for the current platform
@@ -72,20 +80,34 @@ class OAuthConfigService {
     }
   }
 
-  /// Check if the current platform supports OAuth
+  /// TEMPORARILY DISABLED - Check if the current platform supports OAuth
   static bool isPlatformSupported() {
+    // OAUTH TEMPORARILY DISABLED FOR DEPLOYMENT
+    return false;
+
+    /* COMMENTED OUT FOR DEPLOYMENT
     return kIsWeb ||
         defaultTargetPlatform == TargetPlatform.android ||
         defaultTargetPlatform == TargetPlatform.iOS;
+    */
   }
 
-  /// Get platform-specific OAuth configuration
+  /// TEMPORARILY DISABLED - Get platform-specific OAuth configuration
   static Map<String, dynamic> getPlatformConfig() {
+    return {
+      'platform': kIsWeb ? 'web' : defaultTargetPlatform.name,
+      'clientId': 'DISABLED_FOR_DEPLOYMENT',
+      'scopes': [],
+      'supported': false, // OAuth temporarily disabled
+    };
+
+    /* COMMENTED OUT FOR DEPLOYMENT
     return {
       'platform': kIsWeb ? 'web' : defaultTargetPlatform.name,
       'clientId': getClientId(),
       'scopes': ['email', 'profile', 'openid'],
       'supported': isPlatformSupported(),
     };
+    */
   }
 }

@@ -293,8 +293,13 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  /// Alternative mobile Google Sign-In without disconnect
+  /// TEMPORARILY DISABLED - Alternative mobile Google Sign-In without disconnect
   Future<void> _signInWithGoogleMobileAlternative() async {
+    // OAUTH TEMPORARILY DISABLED FOR DEPLOYMENT
+    debugPrint('⚠️ Alternative Google OAuth temporarily disabled for deployment');
+    throw Exception('Google OAuth is temporarily disabled for deployment');
+
+    /* COMMENTED OUT FOR DEPLOYMENT
     final GoogleSignIn googleSignIn =
         OAuthConfigService.getGoogleSignInInstance();
 
@@ -325,10 +330,23 @@ class AuthService extends ChangeNotifier {
 
     final userCredential = await _auth.signInWithCredential(credential);
     _currentUser = userCredential.user;
+    */
   }
 
-  /// Sign in with Google
+  /// TEMPORARILY DISABLED - Sign in with Google
   Future<void> signInWithGoogle() async {
+    // GOOGLE OAUTH TEMPORARILY DISABLED FOR DEPLOYMENT
+    _loading = true;
+    notifyListeners();
+
+    debugPrint('⚠️ Google OAuth temporarily disabled for deployment');
+
+    // Simulate a failed OAuth attempt
+    _loading = false;
+    notifyListeners();
+    throw Exception('Google OAuth is temporarily disabled for deployment. Please use email/password authentication.');
+
+    /* COMMENTED OUT FOR DEPLOYMENT
     try {
       _loading = true;
       notifyListeners();
@@ -478,6 +496,7 @@ class AuthService extends ChangeNotifier {
       notifyListeners();
       rethrow;
     }
+    */ // END OF COMMENTED OUT OAUTH CODE
   }
 
   /// Get user-friendly error message for OAuth errors
