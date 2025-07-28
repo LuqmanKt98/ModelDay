@@ -1,10 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "flutter build web --release",
-  "outputDirectory": "build/web",
-  "installCommand": "flutter pub get",
   "functions": {
-    "api/chat.js": {
+    "api/**/*.js": {
       "runtime": "nodejs18.x"
     }
   },
@@ -43,10 +40,6 @@
     {
       "source": "/api/(.*)",
       "destination": "/api/$1"
-    },
-    {
-      "source": "/favicon.ico",
-      "destination": "/favicon.png"
     },
     {
       "source": "/(.*)",
