@@ -75,6 +75,7 @@ OAuth key/
 !pubspec.lock
 !vercel.json
 !manifest.json
+!package.json
 !analysis_options.yaml
 
 # API Keys and Secrets - NEVER COMMIT THESE
